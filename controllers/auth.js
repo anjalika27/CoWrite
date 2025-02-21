@@ -1,0 +1,4 @@
+function registerUser(req,res) {
+    
+
+}
