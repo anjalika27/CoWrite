@@ -23,17 +23,25 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 
-app.use((req, res, next) => {
-    const publicRoutes = ['/login', '/register'];
-    if (publicRoutes.includes(req.path)) {
-        return next();
-    }
-    checkAuthentication(req, res, next);
-})
+// app.use((req, res, next) => {
+//     const publicRoutes = ['/login', '/register'];
+//     if (publicRoutes.includes(req.path)) {
+//         console.log(1);
+
+//         next();
+//         console.log(2);
+
+//     }
+//     console.log(3);
+
+//     checkAuthentication(req, res, next);
+//     console.log(4);
+
+// })
 
 
 app.use('/', authRoutes)
-app.use('/notes', noteRoutes)
+app.use('/notes', checkAuthentication, noteRoutes)
 
 connectDB(DB_URL).then(() => {
     app.listen(PORT, () => {

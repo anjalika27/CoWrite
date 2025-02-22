@@ -4,6 +4,7 @@ import { validateToken } from "../services/auth.js"
 export function checkAuthentication(req, res, next) {
     const token = req.cookies['token']
     // Ensure cookie-parser is used
+    // console.log(token, 'token');
 
     if (!token) {
         return res.redirect('/register'); // Redirect if no token is found
