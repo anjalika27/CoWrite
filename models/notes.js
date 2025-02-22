@@ -9,3 +9,7 @@ const notesSchema = new mongoose.Schema({
     updatedAt: { type: Date, default: Date.now },
     collaboratorsId: { type: [String], default: [] }
 })
+
+const notesModel = mongoose.Model('notes', notesSchema)
+
+export default notesModel

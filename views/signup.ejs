@@ -1,0 +1,40 @@
+<%- include('./partials/header.ejs') %>
+
+    <body>
+
+        <h5 style="text-align: center;font-size: xxx-large;font-weight: 600;margin: 2%;">Register</h5>
+
+        <div class="container mt-7">
+            <form class="col-5 mx-auto card p-3 shadow-lg" style="background-color: rgb(224, 218, 229);" method="POST"
+                action="/register">
+                
+                <div class="form-group" style="margin-top: 1%;">
+                    <label style="margin-top: 1%;font-weight: 600;">Username</label>
+                    <input type="text" class="form-control" placeholder="Enter Username" style="margin-top: 1%;"
+                        name="username">
+                </div>
+                <div class="form-group" style="margin-top: 1%;">
+                    <label style="margin-top: 1%; font-weight: 600;">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter Email" style="margin-top: 1%;"
+                        name="email">
+                </div>
+
+                <div class="form-group" style="margin-top: 1%;">
+                    <label for="exampleInputPassword1" style="font-weight: 600;">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password"
+                        style="margin-top: 1%;" name="password">
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <button type="submit" class="btn"
+                        style="margin-top: 1.5%;background-color: rgb(168, 107, 183);color: aliceblue;">Submit</button>
+                    <div style="display: flex; justify-content: flex-end">
+                        <h6 style="font-weight:550 ;" class="mt-4 mx-2">Already have an account?</h6>
+                        <button class="btn mt-2" style="margin-top: 1.5%; background-color: rgb(168, 107, 183);"><a
+                                href="/login" style="color: aliceblue;text-decoration: none;">Login</a></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <%- include('./partials/footer.ejs') %>
