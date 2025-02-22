@@ -4,9 +4,9 @@
         <div class="shadow-lg" style="margin-left: 20%; margin-top: 4%; margin-right: 20; width: 57%; background-color: white">
             <div
                 style="background-color: rgb(224, 218, 229); width: 100%;display: flex;justify-content: space-between;">
-                <input type="text" style="margin-bottom: 10px; width: 92%;height: 40px;" placeholder="Title" />
-                <button class="btn"
-                    style="margin-bottom: 10px;background-color: rgb(168, 107, 183);color: aliceblue;margin-bottom: 10px;"><a>Save</a></button>
+                <input type="text" id="title" style="margin-bottom: 10px; width: 92%;height: 40px;" placeholder="Title" />
+                <button class="btn" id="save"
+                    style="margin-bottom: 10px;background-color: rgb(168, 107, 183);color: aliceblue;margin-bottom: 10px;">Save</button>
             </div>
 
             <div id="editor" style="height: 70vh; border: 0.3px solid grey;">
@@ -23,6 +23,14 @@
             const quill = new Quill("#editor", {
                 theme: "snow",
             });
+        </script>
+        <script>
+            document.getElementById('save').addEventListener('click', async () => {
+                const title = document.getElementById('title').value;
+                const content = quill.getContents();
+
+
+            })
         </script>
     </body>
 

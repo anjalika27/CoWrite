@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const notesSchema = new mongoose.Schema({
     id: String,
     title: String,
-    content: String,
+    content: Object,
     authorId: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

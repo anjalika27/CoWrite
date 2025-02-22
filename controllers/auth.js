@@ -1,6 +1,7 @@
 import UserDB from '../models/user.js'
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
+import { createToken } from '../services/auth.js'
 
 export async function registerUser(req, res) {
 
@@ -17,7 +18,9 @@ export async function registerUser(req, res) {
 
         const newUser = await UserDB.create({ id: uuid(), username, email, password: hashedPassword, name: username })
 
-        return res.status(200).render('allNotes.ejs', { username: newUser.name, userId: newUser.id, notes: [] })
+        const token = createToken(newUser)
+        console.log(token);
+        return res.status(200).cookie('token', token).redirect('/notes');
     } catch (error) {
         console.log(error);
 
@@ -33,14 +36,17 @@ export async function loginUser(req, res) {
     if (!email || !password) return res.status(400).send('<h1 style="text-align: center;" class="mt-4">Missing Params</h1>')
 
     try {
+
         const user = await UserDB.findOne({ 'email': email })
-        if (!user) return res.redirect('/signup')
+        if (!user) return res.redirect('/register')
+
 
         const isMatched = await bcrypt.compare(password, user.password)
 
         if (isMatched) {
+            const token = createToken(user)
 
-            return res.render('allNotes.ejs', { username: user.name, userId: user.id, notes: [{ title: 'hrftgnrtjhfdfbhdte' }, { title: 'def' }] })
+            return res.cookie('token', token).redirect('/notes')
         }
 
         return res.status(200).send('<h1 style="text-align: center;" class="mt-4">Not valid credentials</h1>')
