@@ -2,6 +2,7 @@ import express from 'express'
 import { configDotenv } from 'dotenv'
 import { connectDB } from './services/db.js'
 import authRoutes from './routes/authRoutes.js'
+import noteRoutes from './routes/noteRoutes.js'
 import path from 'path'
 configDotenv()
 
@@ -18,7 +19,7 @@ app.set('views', path.resolve('./views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-app.use('/', authRoutes)
+app.use('/', [authRoutes, noteRoutes])
 
 
 

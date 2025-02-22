@@ -17,7 +17,7 @@ export async function registerUser(req, res) {
 
         const newUser = await UserDB.create({ id: uuid(), username, email, password: hashedPassword, name: username })
 
-        return res.status(200).render('allNotes.ejs', { username: newUser.name, notes: [] })
+        return res.status(200).render('allNotes.ejs', { username: newUser.name, userId: newUser.id, notes: [] })
     } catch (error) {
         console.log(error);
 
@@ -39,7 +39,8 @@ export async function loginUser(req, res) {
         const isMatched = await bcrypt.compare(password, user.password)
 
         if (isMatched) {
-            return res.render('allNotes.ejs', { username: user.name, notes: [{ title: 'hrftgnrtjhfdfbhdte' }, { title: 'def' }] })
+
+            return res.render('allNotes.ejs', { username: user.name, userId: user.id, notes: [{ title: 'hrftgnrtjhfdfbhdte' }, { title: 'def' }] })
         }
 
         return res.status(200).send('<h1 style="text-align: center;" class="mt-4">Not valid credentials</h1>')
